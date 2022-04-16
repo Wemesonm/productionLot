@@ -1,4 +1,6 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef, useEffect} from 'react';
+
+
 
 function DragNDrop({data}) {
     const [list, setList] = useState(data);
@@ -56,30 +58,34 @@ function DragNDrop({data}) {
 
     if(list) {
         return (
-            <div className="drag-n-drop">
-                {list.map((grp, grpI) => (
-                    <div 
-                        key={grp.title} 
-                        className="dnd-group"
-                        onDragEnter={dragging && !grp.items.length?(e) => handleDragEnter(e, {grpI, itemI: 0}) : null}
-                    >
-                        <div className="group-title">{grp.title}</div>
-                        {grp.items.map((item, itemI) => (
-                            
+            <div className="App">
+                <header className="App-header">
+                    <div className="drag-n-drop">
+                        {list.map((grp, grpI) => (
                             <div 
-                                draggable 
-                                onDragStart={(e) => {handleDragStart(e, {grpI, itemI})}} 
-                                onDragEnter={dragging?(e) => {handleDragEnter(e, {grpI, itemI})}:null}
-                                key={item} 
-                                className={dragging?getStyles({grpI, itemI}):"dnd-item"}
+                                key={grp.title} 
+                                className="dnd-group"
+                                onDragEnter={dragging && !grp.items.length?(e) => handleDragEnter(e, {grpI, itemI: 0}) : null}
                             >
-                                <label className="lot-number">Lot#{item}</label>
-                                
+                                <div className="group-title">{grp.title}</div>
+                                {grp.items.map((item, itemI) => (
+                                    
+                                    <div 
+                                        draggable 
+                                        onDragStart={(e) => {handleDragStart(e, {grpI, itemI})}} 
+                                        onDragEnter={dragging?(e) => {handleDragEnter(e, {grpI, itemI})}:null}
+                                        key={item} 
+                                        className={dragging?getStyles({grpI, itemI}):"dnd-item"}
+                                    >
+                                        <label className="lot-number">Lot#{item}</label>
+                                        
+                                    </div>
+                                ))}
+                                <button>+</button>
                             </div>
                         ))}
-                        <button>+</button>
                     </div>
-                ))}
+                </header>
             </div>
         )
     } else{return null}

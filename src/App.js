@@ -1,15 +1,15 @@
 import './App.css';
 import DragNDrop from './components/DragNDrop';
-import data from './server.js'
+import CadLot from './page/CadLot';
+import data from './server'
 
 
 function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <DragNDrop data={data}/>
-      </header>
+    <div>
+      {/* <DragNDrop data={data}/> */}
+      <CadLot/>
     </div>
   );
 }
